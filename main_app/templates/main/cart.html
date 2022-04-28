@@ -1,0 +1,45 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top:10em">
+        <div class="col-md-8 ">
+            <table class="table table-striped ml-5">
+                <thead>
+                    <tr>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Specification</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Pieces</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                        <th scope="row">{{item.item.title}}</th>
+                        <td>{{item.item.description}}</td>
+                        <td>{{item.item.instructions}}</td>
+                        <td>{{item.item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.item.pieces}}</td>
+                        <td><a href="{% url 'main:remove-cart-item' item.item.id %}" class="btn btn-danger btn-md">Delete😥</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 text-center">
+            <h1 class="text-primary">Order Summary</h1>
+            <ul class="list-group" style="width:20em; margin-left:6em">
+                <li class="list-group-item"><h4>Bill: ${{total_bill}}0</h4></li>
+                <li class="list-group-item"><h4>Quantity: {{count}}</h4></li>
+                <li class="list-group-item"><h4>Pieces: {{total_pieces}}</h4></li>
+                <li class="list-group-item"><a class="btn btn-primary btn-lg">Proceed To CheckOut</a></li>
+                <li class="list-group-item"><a class="btn btn-warning btn-lg">Continue Buying!!</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

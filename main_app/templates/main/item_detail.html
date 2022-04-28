@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row text-light text-center" style="margin-top:5em">
+        <div class="col-md-6">
+            <img src="{{item.image.url}}" width="500px" height="600px">
+        </div>
+        <div class="col-md-6" style="padding-top:10em">
+            <h2>{{item.title|title}} <span class="badge badge-{{item.label_color}}">{{item.label}}</span></h2>
+            <p class="h5">{{item.description|title}}</p>
+            <p>{{item.instruction|title}}</p>
+            <h4>GHC {{item.price}} per Box of {{item.pieces}}</h4>
+            <a href="{% url 'main:add-to-cart' slug=item.slug %}" class="btn btn-primary btn-lg mt-2">Add to cart</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
